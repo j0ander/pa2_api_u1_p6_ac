@@ -10,7 +10,6 @@ import jakarta.inject.Inject;
 public class Main {
 
     public static void main(String[] args) {
-
         Quarkus.run(App.class, args);
 
     }
@@ -20,7 +19,7 @@ public class Main {
         private PedidoService pedidoService;
         @Override
         public int run(String... args) {
-            Pedido p1 = new Pedido("Anderson Chancusi", "Coca Cola", 1200, "anderson@gmail.com");
+            Pedido p1 = new Pedido("Anderson Chancusi", "Coca Cola", 20, "anderson@gmail.com");
             this.pedidoService.registar(p1);
             return 0;
 
