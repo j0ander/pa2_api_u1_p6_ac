@@ -6,7 +6,7 @@ import io.quarkus.runtime.annotations.QuarkusMain;
 import jakarta.enterprise.inject.spi.CDI;
 
 
-@QuarkusMain
+//@QuarkusMain
 public class Main {
 
     public static void main(String[] args) {
