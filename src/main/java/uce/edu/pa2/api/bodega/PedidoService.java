@@ -1,15 +1,16 @@
 package uce.edu.pa2.api.bodega;
 
-import io.quarkus.arc.Unremovable;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
 @ApplicationScoped
-@Unremovable
 public class PedidoService {
     
     @Inject
     private NotificadorSelector selector;    
+
+    @Inject 
+    private ComprobanteSelector comprobanteSelector;
     //DI por constructor
 /*   @Inject
      public PedidoService(NotificadorMail notificadorMail) {
@@ -28,12 +29,22 @@ public class PedidoService {
         this.notificadorMail = notificadorMail;
     } */
 
-    public void registar(Pedido pedido) {
+
+    //private PagoEstrategia pagoEstrategia;
+
+    // public void setPagoEstrategia(PagoEstrategia pagoEstrategia) {
+    //    this.pagoEstrategia = pagoEstrategia;
+   // }
+    public void registar(Pedido pedido, PagoEstrategia pagoEstrategia) {
         System.out.println("Registrando pedido");
         System.out.println("cliente: " + pedido.getCliente());
         System.out.println("Total: " + pedido.getTotal());
         System.out.println("Guardando en la base de datos");
+        
+        pagoEstrategia.realizar(pedido.getTotal());
 
+        Comprobante comprobante = comprobanteSelector.seleccionar(pedido);
+        comprobante.generar(pedido);
         
         //NotificadorMail n1 = new NotificadorMail(); Sin inyeccion
         Notificador notificador = this.selector.seleccionar(pedido.getTotal());

@@ -14,6 +14,12 @@ public class Pedido {
         this.destino = destino;
     }
 
+    public Pedido(String cliente, String producto, double total) {
+        this.cliente = cliente;
+        this.producto = producto;
+        this.total = total;
+    }
+
     public Pedido() {
     }
 
