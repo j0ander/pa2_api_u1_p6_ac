@@ -5,7 +5,6 @@ import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
 import jakarta.inject.Inject;
 
-
 @QuarkusMain
 public class Main {
 
@@ -15,40 +14,49 @@ public class Main {
     }
 
     public static class App implements QuarkusApplication {
-        //Modelos IoC
-        //1. DI
-        
-        
-        @Inject
-        private PedidoService pedidoService;
-        
-        //2. Service Locator (Lookup)
-        //current accedo al contenedor CDI, select selecciono la clase que quiero, get obtengo la instancia
-        //private PedidoService pedidoService =CDI.current().select(PedidoService.class).get();
-        @Inject
-        private PagoTarjetaCredito pagoTarjetaCredito;
 
         @Inject
-        private PagoEfectivo pagoEfectivo;
-        
+        private AmbitoAplicacion ambitoAplicacion;
+
+        @Inject
+        private ClaseIntermedia claseIntermedia;
+        @Inject
+        private AmbitoRequest ambitoRequest; 
+
+        @Inject
+        private AmbitoInject ambitoInject;
+       
+        @Inject
+        private AmbitoSingleton ambitoSingleton;
+
         @Override
         public int run(String... args) {
-            //caso 1 (digital)
-/*             PedidoService pedidoService =CDI.current().select(PedidoService.class).get();
- */
-            Pedido p = new Pedido("Anderson Chancusi", "Coca Cola", 1200, "anderson@gmail.com");
-            this.pedidoService.registar(p, pagoTarjetaCredito);
-            System.out.println("-------------------------------------------------");
+            System.out.println("----------------------------- Ambito scoped -----------------------------");
+            System.out.println(this.ambitoAplicacion);
+            this.ambitoAplicacion.incrementarContador();
+            this.ambitoAplicacion.incrementarContador();
+            this.ambitoAplicacion.incrementarContador();
+            this.claseIntermedia.imprimirObjetoValor();
+           /*  System.out.println("----------------------------- Ambito Request -----------------------------");
+            System.out.println(this.ambitoRequest.incrementarContador());
+            System.out.println(this.ambitoRequest.incrementarContador());
+            System.out.println(this.ambitoRequest.incrementarContador());
+          */
+            System.out.println("----------------------------- Ambito Dependent -----------------------------");
+            System.out.println(this.ambitoInject.incrementarContador());
+            System.out.println(this.ambitoInject.incrementarContador());
+            System.out.println(this.ambitoInject.incrementarContador());
+            this.claseIntermedia.imprimirObjetoValorInject();
             
-            
-            //caso 2 (fisico)
-            Pedido p2 = new Pedido("Anderson Chancusi", "Coca Cola", 20, "");
-            this.pedidoService.registar(p2, pagoEfectivo);
-            return 0; 
-            
+            System.out.println("----------------------------- Ambito Singleton -----------------------------");
+            System.out.println(this.ambitoSingleton);
+            System.out.println(this.ambitoSingleton.incrementarContador());
+            System.out.println(this.ambitoSingleton.incrementarContador());
+            System.out.println(this.ambitoSingleton.incrementarContador());
+            this.claseIntermedia.imprimirObjetoValorSingleton();
 
+            return 0;
         }
     }
 
- 
 }
