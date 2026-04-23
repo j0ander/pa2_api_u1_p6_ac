@@ -16,45 +16,19 @@ public class Main {
     public static class App implements QuarkusApplication {
 
         @Inject
-        private AmbitoAplicacion ambitoAplicacion;
-
+        private ProcesadorVentaService procesadorVentaService;
         @Inject
-        private ClaseIntermedia claseIntermedia;
-        @Inject
-        private AmbitoRequest ambitoRequest; 
-
-        @Inject
-        private AmbitoInject ambitoInject;
-       
-        @Inject
-        private AmbitoSingleton ambitoSingleton;
+        private EstadisticasVentasGlobales estadisticasVentasGlobales;
 
         @Override
         public int run(String... args) {
-            System.out.println("----------------------------- Ambito scoped -----------------------------");
-            System.out.println(this.ambitoAplicacion);
-            this.ambitoAplicacion.incrementarContador();
-            this.ambitoAplicacion.incrementarContador();
-            this.ambitoAplicacion.incrementarContador();
-            this.claseIntermedia.imprimirObjetoValor();
-           /*  System.out.println("----------------------------- Ambito Request -----------------------------");
-            System.out.println(this.ambitoRequest.incrementarContador());
-            System.out.println(this.ambitoRequest.incrementarContador());
-            System.out.println(this.ambitoRequest.incrementarContador());
-          */
-            System.out.println("----------------------------- Ambito Dependent -----------------------------");
-            System.out.println(this.ambitoInject.incrementarContador());
-            System.out.println(this.ambitoInject.incrementarContador());
-            System.out.println(this.ambitoInject.incrementarContador());
-            this.claseIntermedia.imprimirObjetoValorInject();
-            
-            System.out.println("----------------------------- Ambito Singleton -----------------------------");
-            System.out.println(this.ambitoSingleton);
-            System.out.println(this.ambitoSingleton.incrementarContador());
-            System.out.println(this.ambitoSingleton.incrementarContador());
-            System.out.println(this.ambitoSingleton.incrementarContador());
-            this.claseIntermedia.imprimirObjetoValorSingleton();
-
+            Venta v1 = new Venta("Anderson Chancusi", 70);
+            this.procesadorVentaService.procesar(v1);
+            Venta v2 = new Venta("Daniel Teran", 40);
+            this.procesadorVentaService.procesar(v2);
+            Venta v3 = new Venta("Pablo Castillo", 20);
+            this.procesadorVentaService.procesar(v3);
+            this.estadisticasVentasGlobales.mostrarEstadisticasGlobales();
             return 0;
         }
     }
