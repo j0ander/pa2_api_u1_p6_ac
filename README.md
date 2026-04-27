@@ -10,6 +10,7 @@ Gestor de conexión a base de datos
 Cache de información frecuente
 Lista global de productos en memoria
 Configuración de acceso a APIs externas
+
 🔹 Dependent
 
 Este contexto crea una nueva instancia cada vez que se utiliza.
@@ -22,6 +23,7 @@ Formateador de texto en operaciones puntuales
 Conversor de unidades (ej: monedas)
 Procesador de compras individuales
 Validador de credenciales en login
+
 🔹 Singleton
 
 Este contexto garantiza que exista una única instancia controlada en toda la aplicación.
