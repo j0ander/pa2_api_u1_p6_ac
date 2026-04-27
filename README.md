@@ -1,4 +1,4 @@
-## 🔹 ApplicationScoped
+##  ApplicationScoped
 
 Este contexto crea una única instancia que se comparte durante toda la ejecución de la aplicación.
 
@@ -13,7 +13,7 @@ Este contexto crea una única instancia que se comparte durante toda la ejecuci�
 
 ---
 
-## 🔹 Dependent
+##  Dependent
 
 Este contexto crea una nueva instancia cada vez que se utiliza.
 
@@ -28,7 +28,7 @@ Este contexto crea una nueva instancia cada vez que se utiliza.
 
 ---
 
-## 🔹 Singleton
+##  Singleton
 
 Este contexto garantiza que exista una única instancia controlada en toda la aplicación.
 
