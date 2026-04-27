@@ -1,62 +1,36 @@
-# pa2_api_u1_p6_ac
+🔹 ApplicationScoped
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+Este contexto crea una única instancia que se comparte durante toda la ejecución de la aplicación.
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
+Ejemplos:
+Configuración general de la aplicación (idioma, zona horaria, etc.)
+Sistema de registro de logs
+Contador global de visitas
+Gestor de conexión a base de datos
+Cache de información frecuente
+Lista global de productos en memoria
+Configuración de acceso a APIs externas
+🔹 Dependent
 
-## Running the application in dev mode
+Este contexto crea una nueva instancia cada vez que se utiliza.
 
-You can run your application in dev mode that enables live coding using:
+Ejemplos:
+Validador de formularios
+Generador de códigos aleatorios
+Objeto temporal para cálculo de impuestos
+Formateador de texto en operaciones puntuales
+Conversor de unidades (ej: monedas)
+Procesador de compras individuales
+Validador de credenciales en login
+🔹 Singleton
 
-```shell script
-./mvnw quarkus:dev
-```
+Este contexto garantiza que exista una única instancia controlada en toda la aplicación.
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
-
-## Packaging and running the application
-
-The application can be packaged using:
-
-```shell script
-./mvnw package
-```
-
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
-
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
-
-If you want to build an _über-jar_, execute the following command:
-
-```shell script
-./mvnw package -Dquarkus.package.jar.type=uber-jar
-```
-
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
-
-## Creating a native executable
-
-You can create a native executable using:
-
-```shell script
-./mvnw package -Dnative
-```
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
-
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
-```
-
-You can then execute your native executable with: `./target/pa2_api_u1_p6_ac-1.0.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
-
-## Provided Code
-
-### REST
-
-Easily start your REST Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+Ejemplos:
+Reloj central del sistema
+Administrador de sesiones de usuarios
+Registro de eventos críticos
+Gestor de configuración principal
+Controlador global de seguridad
+Administrador de recursos del sistema
+Cola global de tareas
