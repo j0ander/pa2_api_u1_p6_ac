@@ -16,35 +16,20 @@ public class Main {
     public static class App implements QuarkusApplication {
 
         @Inject
-        private ProcesadorVentaService procesadorVentaService;
-        @Inject
-        private ProcesadorVentaService1 procesadorVentaService1;
-        @Inject
-        private EstadisticasVentasGlobales estadisticasVentasGlobales;
-        @Inject
-        private ProcesadorVentaEnLineaServices procesadorVentaEnLineaServices;
+        private ProcesarVentaServiceTiempo procesarVentaServiceTiempo;    
         
+        @Inject
+        private InventarioService inventarioService;
         
         @Override
         public int run(String... args) {
             Venta v1 = new Venta("Anderson Chancusi", 70);
-            this.procesadorVentaService.procesar(v1);
-            Venta v2 = new Venta("Daniel Teran", 40);
-            this.procesadorVentaService.procesar(v2);
-            Venta v3 = new Venta("Pablo Castillo", 20);
-            this.procesadorVentaService.procesar(v3);
-            System.out.println("---------------------------------------------------");
-            Venta v4 = new Venta("Pablo Castillo", 20);
-            this.procesadorVentaService1.procesar(v4);
-            Venta v5 = new Venta("Pablo Castillo", 20);
-            this.procesadorVentaService1.procesar(v5);
-            System.out.println("---------------------------------------------------");
-            Venta v6 = new Venta("Pablo Castillo", 20);
-            this.procesadorVentaEnLineaServices.procesar(v6);
-            Venta v7 = new Venta("Pablo Castillo", 20);
-            this.procesadorVentaEnLineaServices.procesar(v7);
-            System.out.println("---------------------------------------------------");
-            this.estadisticasVentasGlobales.mostrarEstadisticasGlobales();
+            Pedido pd = new Pedido("Anderson Chancusi", "Arroz", 1000);
+            this.procesarVentaServiceTiempo.procesar(v1);
+            System.out.println("-------------------------------------");
+            this.procesarVentaServiceTiempo.reprocesar(v1);
+            System.out.println("-------------------------------------");
+            this.inventarioService.registrarInventario(pd);
             return 0;
         }
     }
