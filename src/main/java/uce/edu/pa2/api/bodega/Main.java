@@ -26,12 +26,13 @@ public class Main {
             Venta v1 = new Venta("Anderson Chancusi", 70);
             Pedido pd = new Pedido("Anderson Chancusi", "Arroz", 1000);
             this.procesarVentaServiceTiempo.procesar(v1);
-            System.out.println("-------------------------------------");
-            this.procesarVentaServiceTiempo.reprocesar(v1);
-            System.out.println("-------------------------------------");
-            this.inventarioService.registrarInventario(pd);
+      //     System.out.println("-------------------------------------");
+      //      this.procesarVentaServiceTiempo.reprocesar(v1);
+/*             System.out.println("-------------------------------------");
+            this.inventarioService.registrarInventario(pd);  */
             return 0;
         }
     }
 
 }
+ 

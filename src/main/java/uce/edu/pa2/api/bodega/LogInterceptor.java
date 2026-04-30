@@ -5,25 +5,25 @@ import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.Interceptor;
 import jakarta.interceptor.InvocationContext;
 
-@MedirTiempo // vinculamos el interceptor con la anotacion
+@Log // vinculamos el interceptor con la anotacion
 @Interceptor // le indicamos que esta clase es un interceptor
-@Priority(2)
-public class MedirTiempoInterceptor {
+@Priority(3)
+public class LogInterceptor {
     @AroundInvoke // le indicamos que este metodo se va a ejecutar alrededor de la ejecucion del
                   // metodo interceptado
     public Object medir(InvocationContext context) throws Exception { // tiene que tener esta firma
-        System.out.println("Se ejecuto antes del metodo");
+        System.out.println("Se ejecuto Log antes del metodo");
         System.out.println("Metodo interceptado: " + context.getMethod().getName());
-        long inicio = System.currentTimeMillis();
-        // inicia la ejecucion del metodo
-        // si no se llama al proceed, nunca se ejecuta el metodo
+        Object[] args =context.getParameters();
+        for(int i = 0; i<args.length;i++){
+            System.out.println("Argumento: " + args[i]);
+            Object obj = args[i];
+            Venta venta = (Venta) obj;
+            System.out.println(venta.getCliente());
+            System.out.println(venta.getTotal());
+        }
         Object resultado = context.proceed();
-        // pasa a la linea 18 una vez q se termine de ejecutar el metodo de negocio
 
-        long fin = System.currentTimeMillis();
-
-        long tiempoTranscurrido = fin - inicio;
-        System.out.println("Tiempo transcurrido: " + tiempoTranscurrido + " ms");
         return resultado;
     }
-} 
+}

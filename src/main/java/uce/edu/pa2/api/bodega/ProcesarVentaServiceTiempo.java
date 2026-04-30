@@ -10,7 +10,9 @@ public class ProcesarVentaServiceTiempo {
     private EstadisticasVentasGlobales estadisticasVentasGlobales;
 
     @MedirTiempo // Interceptado
+    @Log
     public void procesar(Venta venta) {
+        //System.out.println("Entro al metodo con los siguientes valores: " + venta.getCliente());
         // inicia la venta
 
         System.out.println("Procesando Pedido");
@@ -26,6 +28,7 @@ public class ProcesarVentaServiceTiempo {
         // registrar estadisticas globales
         this.estadisticasVentasGlobales.registrarVenta(venta.getTotal());
         System.out.println("Final del Pedido");
+       // this.reprocesar(venta); //No se va a ejecutar el interceptor del metodo, porque es una llamada interna
     }
 
     @MedirTiempo // Interceptado
