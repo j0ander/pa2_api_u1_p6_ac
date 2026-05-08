@@ -20,7 +20,17 @@ public class Main {
 
         @Override
         public int run(String... args) {
-            Compra comp1 = new Compra("Anderson Chancusi", Double.valueOf(100));
+            Cliente cliente = new Cliente(
+                    1,
+                    "1723456789",
+                    "Anderson",
+                    "Chancusi",
+                    "anderson@gmail.com",
+                    "0999999999",
+                    "Quito, Ecuador",
+                    500.00,
+                    true);
+            Compra comp1 = new Compra(cliente, Double.valueOf(100));
             this.procesadorCompraService.procesar(comp1);
             return 0;
         }

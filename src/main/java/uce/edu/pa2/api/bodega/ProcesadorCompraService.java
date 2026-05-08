@@ -13,6 +13,8 @@ public class ProcesadorCompraService {
     @Inject
     private Instance<Impuesto> impuestos;
 
+    @Inject
+    private Instance<Validador> validadores;
     public void procesar(Compra compra) {
         double total = compra.getSubTotal();
         /*
@@ -27,5 +29,10 @@ public class ProcesadorCompraService {
         compra.setTotal(total);
 
         System.out.println("Su valor a pagar es: " + compra.getTotal());
+
+        for(Validador val: validadores){
+            val.validar(compra);
+        }
+        System.out.println("Compra realizada");
     }
 }
